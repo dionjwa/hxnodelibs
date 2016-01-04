@@ -1,6 +1,8 @@
 package js.npm;
 
 import js.Node;
+import js.node.buffer.Buffer;
+import js.node.stream.Writable;
 import js.html.*;
 
 @:jsRequire("canvas")
@@ -10,8 +12,8 @@ extern class NodeCanvasElement
 	var width : Int;
 	function getContext( contextId : String ) : Dynamic;//NodeCanvasRenderingContext2D
 	function toDataURL( ?type : String ) : String;
-	public function createPNGStream() :NodeWriteStream;
-	public function toBuffer() :NodeBuffer;
+	public function createPNGStream() :Writable<Dynamic>;
+	public function toBuffer() :Buffer;
 	public function new(width :Int, height :Int) : Void;
 }
 
@@ -25,13 +27,13 @@ extern class NodeCanvasFont
 @:jsRequire("canvas", "Image")
 extern class NodeCanvasImage
 {
-	var src : NodeBuffer;
-	var height : Int;
-	var width : Int;
+	var src :Buffer;
+	var height :Int;
+	var width :Int;
 	public function new() : Void;
 }
 
-typedef ImageData={data:NodeBuffer, width:Int, height:Int, resolution:Int};
+typedef ImageData={data:Buffer, width:Int, height:Int, resolution:Int};
 typedef CanvasGradient=Dynamic;
 typedef CanvasPattern=Dynamic;
 typedef ImageElement=Dynamic;
