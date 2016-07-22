@@ -22,7 +22,7 @@ abstract DockerMachineStatus(String) {
 
 typedef DockerContainerId=String;
 
-typedef ConstructorOpts = {
+typedef DockerConnectionOpts = {
 	//These
 	@:optional var protocol :String;
 	@:optional var host :String;
@@ -254,7 +254,7 @@ extern class Docker extends js.node.events.EventEmitter<Dynamic>
 {
 	public var modem :DockerModem;
 
-	public function new(opts :ConstructorOpts):Void;
+	public function new(opts :DockerConnectionOpts):Void;
 
 	@:overload(function(options :Dynamic, cb :Error->Array<ImageData>->Void):Void {})
 	public function listImages(cb :Error->Array<ImageData>->Void) :Void;
