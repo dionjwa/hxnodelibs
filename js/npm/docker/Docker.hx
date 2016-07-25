@@ -32,6 +32,10 @@ typedef DockerConnectionOpts = {
 	@:optional var key :String;
 	//or this
 	@:optional var socketPath :String;
+	//Modem options
+	@:optional var timeout :Int;
+	@:optional var version :String;
+	@:optional var checkServerIdentity :Bool;
 }
 
 typedef ImageId=String;
