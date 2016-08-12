@@ -264,6 +264,12 @@ abstract DockerVolumeName(String) to String from String
 		this = s;
 }
 
+typedef CreateVolumeOpts = {
+	@:optional var Name :DockerVolumeName;
+	@:optional var Driver :String;
+	@:optional var DriverOpts :Dynamic;
+	@:optional var Labels :Dynamic;
+}
 
 @:jsRequire("dockerode")
 extern class Docker extends js.node.events.EventEmitter<Dynamic>
@@ -298,12 +304,24 @@ extern class Docker extends js.node.events.EventEmitter<Dynamic>
 
 	@:overload(function(image :String, cb: Null<Error>->Null<IReadable>->Void):Void {})
 	public function pull(image :String, opts :PullImageOptions, cb: Null<Error>->Null<IReadable>->Void) :Void;
+
+	//Volumes
+	public function createVolume(opts :CreateVolumeOpts, cb :Null<Error>->Void) :Void;
+	public function listVolumes(opts :Dynamic, cb :Null<Error>->Dynamic->Void) :Void;
+	public function getVolume(name :DockerVolumeName) :DockerVolume;
 }
 
 typedef DockerImageTagOptions = {
 	var repo :String;
 	var tag :String;
 	@:optional var force :Bool;
+}
+
+extern class DockerVolume extends js.node.events.EventEmitter<Dynamic>
+{
+	public var name :String;
+	public function inspect(cb :Error->Dynamic->Void) :Void;
+	public function remove(cb :Null<Error>->Void) :Void;
 }
 
 extern class DockerImage extends js.node.events.EventEmitter<Dynamic>

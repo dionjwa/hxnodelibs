@@ -8,6 +8,7 @@ import js.Error;
 import js.node.events.EventEmitter.Event;
 import js.node.stream.Readable;
 import js.node.stream.Writable;
+import js.node.stream.Duplex;
 
 @:enum
 abstract TarPackEntryType(String) {
@@ -45,7 +46,7 @@ typedef TarPackHeader = {
 extern class TarStream
 {
 	public static function pack() :TarPack;
-	public static function extract() :IWritable;
+	public static function extract() :Duplex<Dynamic>;
 }
 
 extern class TarPack extends Readable<Dynamic>
