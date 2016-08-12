@@ -1,5 +1,6 @@
 package js.npm.docker;
 
+import js.node.events.EventEmitter;
 import js.node.stream.Readable;
 import js.node.stream.Writable;
 import js.Error;
@@ -253,6 +254,17 @@ typedef DockerModem = {
 	@:optional var followProgress :IReadable->(Null<Error>->Array<Dynamic>->Void)->(Dynamic->Void)->Void;
 }
 
+/**
+ * Basic abstracts like this keep types compile-checked even if they
+ * have the same underlying type (in this case strings).
+ */
+abstract DockerVolumeName(String) to String from String
+{
+	public function new (s)
+		this = s;
+}
+
+
 @:jsRequire("dockerode")
 extern class Docker extends js.node.events.EventEmitter<Dynamic>
 {
@@ -279,10 +291,10 @@ extern class Docker extends js.node.events.EventEmitter<Dynamic>
 	public function getImage(name :String) :DockerImage;
 	public function createImage(?auth :Dynamic, opts :CreateImageOptions, cb:Error->IReadable->Void) :Void;
 
-	@:overload(function(image :String, cmd :String, ?streams :Array<IWritable>, ?createOptions :Dynamic, ?startOptions:Dynamic, cb :Null<Error>->Null<Dynamic>->Null<DockerContainer>->Void):Void {})
-	@:overload(function(image :String, cmd :String, stream :IWritable, ?createOptions :Dynamic, ?startOptions:Dynamic, cb :Null<Error>->Null<Dynamic>->Null<DockerContainer>->Void):Void {})
-	@:overload(function(image :String, cmd :Array<String>, stream :IWritable, ?createOptions :Dynamic, ?startOptions:Dynamic, cb :Null<Error>->Null<Dynamic>->Null<DockerContainer>->Void):Void {})
-	public function run(image :String, cmd :Array<String>, ?streams :Array<IWritable>, ?createOptions :Dynamic, ?startOptions:Dynamic, cb :Null<Error>->Null<Dynamic>->Null<DockerContainer>->Void) :Void;
+	@:overload(function(image :String, cmd :String, ?streams :Array<IWritable>, ?createOptions :CreateContainerOptions, ?startOptions:StartContainerOptions, cb :Null<Error>->Null<Dynamic>->Null<DockerContainer>->Void):Void {})
+	@:overload(function(image :String, cmd :String, stream :IWritable, ?createOptions :CreateContainerOptions, ?startOptions:StartContainerOptions, cb :Null<Error>->Null<Dynamic>->Null<DockerContainer>->Void):Void {})
+	@:overload(function(image :String, cmd :Array<String>, stream :IWritable, ?createOptions :CreateContainerOptions, ?startOptions:StartContainerOptions, cb :Null<Error>->Null<Dynamic>->Null<DockerContainer>->Void):Void {})
+	public function run(image :String, cmd :Array<String>, ?streams :Array<IWritable>, ?createOptions :CreateContainerOptions, ?startOptions:StartContainerOptions, cb :Null<Error>->Null<Dynamic>->Null<DockerContainer>->Void) :EventEmitter<Dynamic>;
 
 	@:overload(function(image :String, cb: Null<Error>->Null<IReadable>->Void):Void {})
 	public function pull(image :String, opts :PullImageOptions, cb: Null<Error>->Null<IReadable>->Void) :Void;
