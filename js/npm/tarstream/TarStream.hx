@@ -4,7 +4,10 @@ package js.npm.tarstream;
  * https://www.npmjs.com/package/tar-stream
  */
 
+import haxe.extern.EitherType;
+
 import js.Error;
+import js.node.Buffer;
 import js.node.events.EventEmitter.Event;
 import js.node.stream.Readable;
 import js.node.stream.Writable;
@@ -52,6 +55,6 @@ extern class TarStream
 extern class TarPack extends Readable<Dynamic>
 {
 	@:overload(function(opts :TarPackHeader, cb :Null<Error>->Void):IWritable {})
-	public function entry(opts :TarPackHeader, val :String) :Void;
+	public function entry(opts :TarPackHeader, val :EitherType<String,Buffer>) :Void;
 	public function finalize() :Void;
 }
