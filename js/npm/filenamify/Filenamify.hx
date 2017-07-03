@@ -8,5 +8,5 @@ package js.npm.filenamify;
 extern class Filenamify
 {
 	@:selfCall
-	public static function filenamify(s :String) :String;
+	public static function filenamify(s :String, ?opts :{replacement:String}) :String;
 }

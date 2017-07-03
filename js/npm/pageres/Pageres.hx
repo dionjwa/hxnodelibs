@@ -7,7 +7,8 @@ typedef PageresOpts = {
 	?delay :Float,
 	?timeout :Float,
 	?crop :Bool,
-	?filename :String
+	?filename :String,
+	?script :String
 }
 
 @:jsRequire('pageres')
