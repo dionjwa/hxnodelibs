@@ -1,8 +1,6 @@
 package js.npm.pem;
 
 import js.Error;
-import express.Middleware;
-import mw.cookieparser.*;
 
 typedef PemCreateCertificationOptions = {
 	@:optional var serviceKey :String;
