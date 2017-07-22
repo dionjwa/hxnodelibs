@@ -21,5 +21,5 @@ typedef PemKeys ={
 @:jsRequire("pem")
 extern class Pem
 {
-  @:selfCall static function createCertificate(opts : PemCreateCertificationOptions, cb :Null<Error>->PemKeys->Void) :Void;
+  static function createCertificate(opts : PemCreateCertificationOptions, cb :Null<Error>->PemKeys->Void) :Void;
 }
