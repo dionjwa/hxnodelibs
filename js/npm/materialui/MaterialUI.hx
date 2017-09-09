@@ -54,6 +54,12 @@ extern class IconButton extends react.ReactComponent  { }
 @:jsRequire('material-ui','IconMenu')
 extern class IconMenu extends react.ReactComponent  { }
 
+@:jsRequire('material-ui','List')
+extern class List extends react.ReactComponent  { }
+
+@:jsRequire('material-ui','ListItem')
+extern class ListItem extends react.ReactComponent  { }
+
 @:jsRequire('material-ui','MenuItem')
 extern class MenuItem extends react.ReactComponent  { }
 
