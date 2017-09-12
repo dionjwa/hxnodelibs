@@ -78,14 +78,26 @@ extern class RadioButtonGroup extends react.ReactComponent  { }
 @:jsRequire('material-ui','RaisedButton')
 extern class RaisedButton extends react.ReactComponent  { }
 
-@:jsRequire('material-ui','Toolbar')
-extern class Toolbar extends react.ReactComponent  { }
+@:jsRequire('material-ui','Table')
+extern class Table extends react.ReactComponent  { }
 
-@:jsRequire('material-ui','ToolbarGroup')
-extern class ToolbarGroup extends react.ReactComponent  { }
+@:jsRequire('material-ui','TableFooter')
+extern class TableFooter extends react.ReactComponent  { }
 
-@:jsRequire('material-ui','ToolbarSeparator')
-extern class ToolbarSeparator extends react.ReactComponent  { }
+@:jsRequire('material-ui','TableRowColumn')
+extern class TableRowColumn extends react.ReactComponent  { }
+
+@:jsRequire('material-ui','TableHeader')
+extern class TableHeader extends react.ReactComponent  { }
+
+@:jsRequire('material-ui','TableHeaderColumn')
+extern class TableHeaderColumn extends react.ReactComponent  { }
+
+@:jsRequire('material-ui','TableRow')
+extern class TableRow extends react.ReactComponent  { }
+
+@:jsRequire('material-ui','TableBody')
+extern class TableBody extends react.ReactComponent  { }
 
 @:jsRequire('material-ui','ToolbarTitle')
 extern class ToolbarTitle extends react.ReactComponent  { }
