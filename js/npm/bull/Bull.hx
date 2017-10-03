@@ -22,6 +22,8 @@ typedef JobOptions = {
 	@:optional var timeout :Int;
 	@:optional var jobId :String;
 	@:optional var removeOnComplete :Bool;
+	@:optional var removeOnFail :Bool;
+	@:optional var priority :Int;
 }
 
 typedef Progress=Float;
