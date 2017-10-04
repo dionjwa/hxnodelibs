@@ -42,7 +42,7 @@ extern class RedisClient extends js.node.events.EventEmitter<Dynamic>
   public static function createClient(?port :Int, ?address :String, ?options :Dynamic):RedisClient;
   public static function print(?arg1 :Dynamic, ?arg2 :Dynamic, ?arg3 :Dynamic, ?arg4 :Dynamic):Void;
 
-  public var connectionOption :{host:String, port:Int};
+  public var connection_options :{host:String, port:Int};
 
   /** Forcibly close the connection to the Redis server. Note that this does not wait until all replies have been parsed. */
   public function end():Void;
