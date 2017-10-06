@@ -26,6 +26,19 @@ typedef JobOptions = {
 	@:optional var priority :Int;
 }
 
+typedef BullOptions = {
+	@:optional var redis :{?port:Int, ?host:String, ?password :String, ?db:Int};
+	@:optional var limiter :{max:Float, duration:Float};
+	@:optional var prefix :String;
+	@:optional var settings :{
+		?lockDuration :Float,
+		?stalledInterval :Float,
+		?maxStalledCount :Float,
+		?guardInterval :Float,
+		?retryProcessDelay :Float
+	};
+}
+
 typedef Progress=Float;
 typedef JobType=String;
 
@@ -49,8 +62,10 @@ typedef JobType=String;
 extern class Queue<JobData, Result> extends EventEmitter<Queue<JobData, Result>>
 {
 	@:selfCall
-	@:overload(function(queueName :String, redisConnectionString :String, ?redisOpts :Dynamic) :Void { })
-	public function new(queueName :String, redisPort :Int, redisAddress :String, ?redisOpts :Dynamic) :Void;
+	@:overload(function(queueName :String, url :String, opts :BullOptions) :Void { })
+	@:overload(function(queueName :String, url :String) :Void { })
+	@:overload(function(queueName :String) :Void { })
+	public function new(queueName :String, opts :BullOptions) :Void;
 
 	@:overload(function(concurrency :Int, job :Job<JobData>) :Bluebird<Dynamic, Dynamic> { })
 	@:overload(function(job :Job<JobData>) :Bluebird<Dynamic, Dynamic> { })
