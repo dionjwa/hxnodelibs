@@ -1,4 +1,4 @@
-@:jsRequire("bull-arena")
+package js.npm.bullarena;
 
 typedef BullArenaOptions = {
 	var queues :Array<BullArenaQueueConfiguration>;
