@@ -4,6 +4,7 @@ import js.Error;
 import js.node.events.EventEmitter;
 import js.node.events.EventEmitter.Event;
 import js.npm.bluebird.Bluebird;
+import js.npm.redis.RedisClient;
 
 typedef BullJobError=Dynamic;
 typedef Done0=Void->Void;
@@ -26,6 +27,12 @@ typedef JobOptions = {
 	@:optional var priority :Int;
 }
 
+@:enum
+abstract RedisConnectionType(String) from String to String {
+	var client = 'client';
+	var subscriber = 'subscriber';
+}
+
 typedef BullOptions = {
 	@:optional var redis :{?port:Int, ?host:String, ?password :String, ?db:Int};
 	@:optional var limiter :{max:Float, duration:Float};
@@ -37,6 +44,7 @@ typedef BullOptions = {
 		?guardInterval :Float,
 		?retryProcessDelay :Float
 	};
+	@:optional var createClient :RedisConnectionType->RedisClient;
 }
 
 typedef Progress=Float;
