@@ -20,6 +20,7 @@ typedef BullArenaListenOptions = {
 	@:optional var disableListen :Bool;
 }
 
+@:jsRequire("bull-arena")
 extern class BullArena
 {
 	@:selfCall
