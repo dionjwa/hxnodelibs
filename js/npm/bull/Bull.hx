@@ -27,6 +27,14 @@ typedef JobOptions = {
 	@:optional var priority :Int;
 }
 
+typedef BullJobCounts = {
+	var waiting :Int;
+	var active :Int;
+	var completed :Int;
+	var failed :Int;
+	var delayed :Int;
+}
+
 @:enum
 abstract RedisConnectionType(String) from String to String {
 	var client = 'client';
@@ -88,6 +96,7 @@ extern class Queue<JobData, Result> extends EventEmitter<Queue<JobData, Result>>
 	public function pause(?isLocal :Bool) :Bluebird<Dynamic, Dynamic>;
 	public function resume(?isLocal :Bool) :Bluebird<Dynamic, Dynamic>;
 	public function count() :Bluebird<Int, Dynamic>;
+	public function getJobCounts() :Bluebird<BullJobCounts, Dynamic>;
 	public function empty() :Bluebird<String, Dynamic>;
 	public function close() :Bluebird<Void, Dynamic>;
 	public function getJob(jobId :String) :Bluebird<Null<Job<JobData>>, Dynamic>;
