@@ -97,6 +97,14 @@ extern class Queue<JobData, Result> extends EventEmitter<Queue<JobData, Result>>
 	public function resume(?isLocal :Bool) :Bluebird<Dynamic, Dynamic>;
 	public function count() :Bluebird<Int, Dynamic>;
 	public function getJobCounts() :Bluebird<BullJobCounts, Dynamic>;
+	public function getActive() :Bluebird<Array<Job<JobData>>, Dynamic>;
+	public function getActiveCount() :Bluebird<Int, Dynamic>;
+	public function getDelayedCount() :Bluebird<Int, Dynamic>;
+	public function getFailedCount() :Bluebird<Int, Dynamic>;
+	public function getCompletedCount() :Bluebird<Int, Dynamic>;
+	public function getWaitingCount() :Bluebird<Int, Dynamic>;
+	public function getPausedCount() :Bluebird<Int, Dynamic>;
+	public function getWaiting() :Bluebird<Int, Dynamic>;
 	public function empty() :Bluebird<String, Dynamic>;
 	public function close() :Bluebird<Void, Dynamic>;
 	public function getJob(jobId :String) :Bluebird<Null<Job<JobData>>, Dynamic>;
